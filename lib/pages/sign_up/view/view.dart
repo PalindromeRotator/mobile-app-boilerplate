@@ -2,22 +2,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:mobile_app_boilerplate/domain/pages/pages.dart';
-import 'package:mobile_app_boilerplate/pages/home/view/favorite_contact_page.dart';
-import 'package:mobile_app_boilerplate/pages/home/view/home_page.dart';
-import 'package:mobile_app_boilerplate/pages/home/view/user_page.dart';
+import 'package:mobile_app_boilerplate/pages/sign_up/view/sign_up_page.dart';
 
-List<Pages> dataList = [
-  Pages('home_page', HomePage()),
-  Pages('favorite_contact_page', FavoriteContactPage()),
-  Pages('user_page', UserPage()),
-];
+List<Pages> dataList = [Pages('sign_up_page', SignUpPage())];
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key, required this.pageName});
+class SignUpView extends StatelessWidget {
+  const SignUpView({super.key, required this.pageName});
   final String pageName;
   @override
   Widget build(BuildContext context) {
-    return searchWidgetByName(pageName);
+    return Scaffold(body: searchWidgetByName(pageName));
   }
 
   Widget searchWidgetByName(String searchName) {
