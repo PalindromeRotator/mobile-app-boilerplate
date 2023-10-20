@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, sort_child_properties_last, non_constant_identifier_names
 
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
@@ -84,82 +86,101 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-            color: Palette.secondaryColor,
-            child: Container(
-                padding: EdgeInsets.all(10),
-                child: Center(
-                  child: SingleChildScrollView(
-                      child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Login to your account',
-                        style:
-                            TextStyle(fontSize: 32, color: Palette.lightColor),
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Textfield(
-                        prefixIcon: Icon(Icons.email),
-                        controller: emailController,
-                        hintText: 'Email address',
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Textfield(
-                        prefixIcon: Icon(Icons.password),
-                        controller: passwordController,
-                        hintText: 'Password',
-                        isPassword: true,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Button(
-                        width: MediaQuery.of(context).size.width * .8,
-                        backgroundColor: Palette.primaryColor,
-                        buttonText: 'Login',
-                        onPressed: () {
-                          loginUsingEmailAndPassword(
-                              emailController.text, passwordController.text);
-                        },
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Button(
-                        width: MediaQuery.of(context).size.width * .8,
-                        backgroundColor: Palette.primaryColor,
-                        buttonText: 'Don\'t have an account? Register',
-                        onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => SignUpPage()),
-                        ),
-                      ),
-                      Visibility(
-                        child: AlertDialog(
-                          title: Text(''),
-                          content: Text(
-                              'Registration Submitted. Wait for 1 to 3 consecutive days for you account approval.'),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  pendingFlag = false;
-                                });
-                              },
-                              child: Text('OK'),
-                            ),
-                          ],
-                        ),
-                        visible: pendingFlag,
-                      )
-                    ],
-                  )),
-                ))));
+        body: DecoratedBox(
+            position: DecorationPosition.background,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                    'assets/background.png'), // Replace with your image asset path
+                fit: BoxFit.cover, // You can adjust the fit as needed
+              ),
+            ),
+            child: Center(
+                child: BackdropFilter(
+                    filter: ImageFilter.blur(
+                        sigmaX: 5, sigmaY: 5), // Adjust the blur intensity
+                    child: Container(
+                        // color: Palette.secondaryColor,
+                        child: Container(
+                            padding: EdgeInsets.all(10),
+                            child: Center(
+                              child: SingleChildScrollView(
+                                  child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Login to your account',
+                                    style: TextStyle(
+                                        fontSize: 32,
+                                        color: Palette.lightColor),
+                                  ),
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  Textfield(
+                                    prefixIcon: Icon(Icons.email),
+                                    controller: emailController,
+                                    hintText: 'Email address',
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Textfield(
+                                    prefixIcon: Icon(Icons.password),
+                                    controller: passwordController,
+                                    hintText: 'Password',
+                                    isPassword: true,
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Button(
+                                    width:
+                                        MediaQuery.of(context).size.width * .8,
+                                    backgroundColor: Palette.primaryColor,
+                                    buttonText: 'Login',
+                                    onPressed: () {
+                                      loginUsingEmailAndPassword(
+                                          emailController.text,
+                                          passwordController.text);
+                                    },
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Button(
+                                    width:
+                                        MediaQuery.of(context).size.width * .8,
+                                    backgroundColor: Palette.primaryColor,
+                                    buttonText:
+                                        'Don\'t have an account? Register',
+                                    onPressed: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => SignUpPage()),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    child: AlertDialog(
+                                      title: Text(''),
+                                      content: Text(
+                                          'Registration Submitted. Wait for 1 to 3 consecutive days for you account approval.'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              pendingFlag = false;
+                                            });
+                                          },
+                                          child: Text('OK'),
+                                        ),
+                                      ],
+                                    ),
+                                    visible: pendingFlag,
+                                  )
+                                ],
+                              )),
+                            )))))));
   }
 }

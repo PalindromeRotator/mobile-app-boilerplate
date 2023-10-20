@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, sort_child_properties_last
 
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -86,109 +88,125 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-            color: Palette.primaryColor,
-            child: Container(
-                padding: EdgeInsets.all(10),
-                child: Center(
-                  child: SingleChildScrollView(
-                      child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Sign up your details',
-                        style:
-                            TextStyle(fontSize: 32, color: Palette.lightColor),
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Textfield(
-                        controller: firstNameController,
-                        hintText: 'First name',
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Textfield(
-                        controller: lastNameController,
-                        hintText: 'Last name',
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Textfield(
-                        prefixIcon: Icon(Icons.email),
-                        controller: emailController,
-                        hintText: 'Email address',
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Textfield(
-                        prefixIcon: Icon(Icons.location_on),
-                        controller: addressController,
-                        hintText: 'Address',
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Textfield(
-                        prefixIcon: Icon(Icons.password),
-                        controller: passwordController,
-                        hintText: 'Password',
-                        isPassword: true,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Textfield(
-                        prefixIcon: Icon(Icons.password),
-                        controller: confirmPasswordController,
-                        hintText: 'Confirm Password',
-                        isPassword: true,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Button(
-                        width: MediaQuery.of(context).size.width * .8,
-                        backgroundColor: Palette.secondaryColor,
-                        buttonText: 'Register',
-                        onPressed: () {
-                          createUserWithEmailAndPassword(
-                              emailController.text,
-                              passwordController.text,
-                              firstNameController.text,
-                              lastNameController.text,
-                              addressController.text);
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //       builder: (context) => LandingView(
-                          //             pageName: "landing_page",
-                          //           )),
-                          // );
-                        },
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Button(
-                        width: MediaQuery.of(context).size.width * .8,
-                        backgroundColor: Palette.secondaryColor,
-                        buttonText: 'Already have an account ? Login',
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginPage()),
-                          );
-                        },
-                      ),
-                    ],
-                  )),
-                ))));
+        body: DecoratedBox(
+            position: DecorationPosition.background,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                    'assets/background.png'), // Replace with your image asset path
+                fit: BoxFit.cover, // You can adjust the fit as needed
+              ),
+            ),
+            child: Center(
+                child: BackdropFilter(
+                    filter: ImageFilter.blur(
+                        sigmaX: 5, sigmaY: 5), // Adjust the blur intensity
+                    child: Container(
+                        child: Container(
+                            padding: EdgeInsets.all(10),
+                            child: Center(
+                              child: SingleChildScrollView(
+                                  child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Sign up your details',
+                                    style: TextStyle(
+                                        fontSize: 32,
+                                        color: Palette.lightColor),
+                                  ),
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  Textfield(
+                                    controller: firstNameController,
+                                    hintText: 'First name',
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Textfield(
+                                    controller: lastNameController,
+                                    hintText: 'Last name',
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Textfield(
+                                    prefixIcon: Icon(Icons.email),
+                                    controller: emailController,
+                                    hintText: 'Email address',
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Textfield(
+                                    prefixIcon: Icon(Icons.location_on),
+                                    controller: addressController,
+                                    hintText: 'Address',
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Textfield(
+                                    prefixIcon: Icon(Icons.password),
+                                    controller: passwordController,
+                                    hintText: 'Password',
+                                    isPassword: true,
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Textfield(
+                                    prefixIcon: Icon(Icons.password),
+                                    controller: confirmPasswordController,
+                                    hintText: 'Confirm Password',
+                                    isPassword: true,
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Button(
+                                    width:
+                                        MediaQuery.of(context).size.width * .8,
+                                    backgroundColor: Palette.secondaryColor,
+                                    buttonText: 'Register',
+                                    onPressed: () {
+                                      createUserWithEmailAndPassword(
+                                          emailController.text,
+                                          passwordController.text,
+                                          firstNameController.text,
+                                          lastNameController.text,
+                                          addressController.text);
+                                      // Navigator.push(
+                                      //   context,
+                                      //   MaterialPageRoute(
+                                      //       builder: (context) => LandingView(
+                                      //             pageName: "landing_page",
+                                      //           )),
+                                      // );
+                                    },
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Button(
+                                    width:
+                                        MediaQuery.of(context).size.width * .8,
+                                    backgroundColor: Palette.secondaryColor,
+                                    buttonText:
+                                        'Already have an account ? Login',
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => LoginPage()),
+                                      );
+                                    },
+                                  ),
+                                ],
+                              )),
+                            )))))));
   }
 }

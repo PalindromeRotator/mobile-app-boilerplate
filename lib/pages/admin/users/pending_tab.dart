@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
-import 'package:mobile_app_boilerplate/widgets/button/button.dart';
 
 class PendingTab extends StatefulWidget {
   const PendingTab({super.key});
@@ -56,10 +55,8 @@ class _PendingTabState extends State<PendingTab> {
                 '${userList[index]['first_name']} ${userList[index]['last_name']}'),
             subtitle: Text(userList[index]['email']),
             leading: Icon(Icons.person),
-            trailing: Expanded(
-                child: Row(children: [
-              TextButton(onPressed: () {}, child: Text('Accept'))
-            ])),
+            trailing: IconButton(
+                onPressed: null, icon: Icon(Icons.arrow_circle_right)),
           );
         },
         // children: const [
